@@ -53,11 +53,27 @@ display: flex;
 
 .ppou{
 display: flex;
-justify-content: center;
+flex-direction: column;
+align-items: center;
 }
 
+#dume{
+margin-bottom: 0px;
+font-size: 28px;
+}
 
+#fanoc{
+margin-top: 2px;
+margin-bottom: 0px;
+padding-left: 13px;
+font-size: 50px;
+}
 
+.xioziqi{
+font-size: 15px;
+color:rgba(0, 0, 0, 0.5);
+margin: 0px;
+}
 
 
 </style>
@@ -71,18 +87,25 @@ justify-content: center;
 
 
 <div class="kiop">
-<p style="margin-top: 0px;">你在哪？</p>
+
+<div>
+<span style="margin-top: 0px;font-size: 20px">天气查询</span>
+<span style="margin: 0px; font-size: 10px;">由"Open-Meteo"API获取天气</span>
+</div>
 
 <div id="formew">
 <input id="cadifan" placeholder="输入你的居住城市">
 <button id="caxing">查询</button>
 </div>
 
-<p id="jidou">请输入查询</p>
+<p id="jidou"></p>
 
 
 <div class="ppou">
-<h2 id="dume"></h2>
+<h3 id="dume"></h3>
+<h1 id="fanoc"></h1>
+<p class="xioziqi"></p>
+<p class="xioziqi"></p>
 
 
 
@@ -107,6 +130,14 @@ let suru = document.getElementById("cadifan")
 let butt = document.getElementById("caxing")
 let out = document.getElementById("jidou")
 let dume = document.getElementById("dume")
+let fanoc = document.getElementById("fanoc")
+let xioziqi = document.getElementsByClassName("xioziqi")[0]
+let xioziqi2 = document.getElementsByClassName("xioziqi")[1]
+let ppsme =document.getElementsByClassName("ppsme")[0]
+  
+let ji = null
+let wu = null
+
 
 const tianqiDaima = {
 0: "晴", 1: "大部晴朗", 2: "多云", 3: "阴",
@@ -123,21 +154,32 @@ fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + culitext + '&coun
 if (!it.results) {
   out.innerText = "无地区"
 } else {
-dume.innerText = it.results[0].name  
-}
-
+dume.innerText = it.results[0].name;
+ji = it.results[0].latitude;
+wu = it.results[0].longitude;
+fetch('https://api.open-meteo.com/v1/forecast?latitude=' + ji + '&longitude=' + wu + '&current=temperature_2m,relative_humidity_2m,weather_code&daily=temperature_2m_max,temperature_2m_min&timezone=auto')
+.then((r) => r.json())
+.then((tianqi) => {
+let d = tianqi.current;
+let ma = tianqiDaima[d.weather_code] || "未知天气";
+fanoc.innerText = Math.round(tianqi.current.temperature_2m) + "°";
+xioziqi.innerText = ma + "　湿度 " + d.relative_humidity_2m + "%";
+xioziqi2.innerText = "今日最低温度:"+Math.round(tianqi.daily.temperature_2m_min[0])+"º  今日最高温度:"+Math.round(tianqi.daily.temperature_2m_max[0])+"º";
+out.innerText = "";
 })
-
-
-  
-
+.catch(e => out.innerText = "请求失败，请检查您的网络")
 }
-
-
+});}
 
 butt.onclick = function () {
 culi01()
 }
+
+ppsme.onclick = function () {
+window.location.href="/" 
+}
+
+
 
 </script>
 
