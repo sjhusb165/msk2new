@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天气查询</title>
+<style>
+
+html,body{
+margin: 0px;
+overflow-x: hidden;
+}
+  
+#bajing{
+width: 100vw;
+min-height: 100vh;
+background: linear-gradient(to bottom,
+#ffd1dc, #e6d6ff, #ceb1ff);
+position: fixed;
+background-attachment: fixed;
+overflow-x: hidden;
+z-index: -1;
+}
+
+.kiop{
+background-color: rgba(255,255,255,0.5);
+display: flex;
+flex-direction: column;
+width: 90%;
+height: auto;
+margin: auto;
+padding:15px 10px 30px 10px;
+box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.15);
+border-radius: 10px;
+border: 1px solid rgba(255, 255, 255, 0.7);
+backdrop-filter: blur(15px);
+margin-top: 20px;
+}
+
+#pssea{
+display: flex;
+justify-content: center;
+}
+
+.ppsme{
+font-size: 14px;
+color: rgba(80,60,120,0.8);
+}
+
+#formew{
+display: flex;
+}
+
+.ppou{
+display: flex;
+justify-content: center;
+}
+
+
+
+
+
+</style>
+</head>
+<body>
+
+  
+<!--背景-->  
+<div id="bajing">
+</div>
+
+
+<div class="kiop">
+<p style="margin-top: 0px;">你在哪？</p>
+
+<div id="formew">
+<input id="cadifan" placeholder="输入你的居住城市">
+<button id="caxing">查询</button>
+</div>
+
+<p id="jidou">请输入查询</p>
+
+
+<div class="ppou">
+<h2 id="dume"></h2>
+
+
+
+</div>
+
+
+
+
+</div>
+
+  
+<div id="pssea">
+<p class="ppsme">
+←返回首页
+</p>
+</div>
+
+  
+  
+<script>
+let suru = document.getElementById("cadifan")
+let butt = document.getElementById("caxing")
+let out = document.getElementById("jidou")
+let dume = document.getElementById("dume")
+
+const tianqiDaima = {
+0: "晴", 1: "大部晴朗", 2: "多云", 3: "阴",
+45: "有雾", 48: "雾凇",
+61: "小雨", 63: "中雨", 65: "大雨"}
+
+function culi01() {
+let culitext = suru.value.trim();
+out.innerText = "查询中……";
+
+fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + culitext + '&count=1&language=zh&format=json')
+.then((r)=> r.json())
+.then((it) => {
+if (!it.results) {
+  out.innerText = "无地区"
+} else {
+dume.innerText = it.results[0].name  
+}
+
+})
+
+
+  
+
+}
+
+
+
+butt.onclick = function () {
+culi01()
+}
+
+</script>
+
+  
+</body>
+</html>
