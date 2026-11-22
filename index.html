@@ -9,6 +9,12 @@
 
 html,body{
 margin: 0px;
+font-family: system-ui, -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+user-select: none;
+-webkit-tap-highlight-color: transparent;
+touch-action: manipulation;
 }
 
 body{
@@ -63,14 +69,17 @@ color: #ffffff
 height: 100vh;
 width: 100%;
 position: absolute;
+pointer-events: none;
+-webkit-user-drag: none;
 }
 
 .h1a{
 position: absolute;
-top: 20%;
+top: 15%;
 color: rgb(255,255,255);
 font-size: 50px;
 z-index: 3;
+left: 5px;
 }
 
 #section02{
@@ -140,7 +149,7 @@ color: rgba(255, 255, 255, 0.87)
 #div01b{
 height: 0px;
 width: 100%;
-background-image: url(Picture/tianyi.jpg);
+background-image: url(tianyi.jpg);
 overflow: hidden;
 position: fixed;
 z-index: 999;
@@ -223,9 +232,9 @@ box-shadow: 0 0 70px #66ccff
 
 <!--视差-->
 <section id="sect">
-<img class="imga" src="Picture/雪山test全.jpg">
-<h1 class="h1a">这是视差</h1>
-<img class="imga" style="z-index: 10;" src="Picture/雪山testbom3.png">
+<img class="imga" src="雪山test全.jpg">
+<h1 class="h1a">Parallax<br>Scrolling</h1>
+<img class="imga" style="z-index: 10;" src="雪山testbom3.png">
 
 </section>
 
@@ -294,7 +303,7 @@ let jisa01a = 0
 //视差代码  
 window.addEventListener('scroll',() => {
 let val = window.scrollY;
-h1a.style.top =  val * 0.2 + 20 + "%" ;
+h1a.style.top =  val * 0.2 + 15 + "%" ;
 });
 
 //菜单展开
