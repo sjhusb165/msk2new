@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+<style>
+
+html,body{
+margin: 0px;
+}
+
+body{
+background-color:rgba(26,16,53,1); 
+}
+  
+#sect{
+height: 100vh;
+display: flex;
+justify-content: center;
+overflow: hidden;
+position: relative
+}
+
+#sect::after{
+content: "";
+position: absolute;
+left: 0px;
+bottom: 0px;
+width: 100%;
+height: 200px;
+background: linear-gradient(to bottom, rgba(26,16,53,0), rgba(26,16,53,1));
+pointer-events: none;
+z-index: 15;
+  }
+
+#cheidang{
+position: absolute;
+top: 2px;
+right: 2px;
+z-index: 1000;
+font-size: 17px;
+}
+
+#cheidang.cheidangcctv{
+position: fixed;
+}
+
+
+
+
+
+#cheidang:active{
+transform:scale(0.95)
+}
+
+#cheidang.kaicolo{
+color: #ffffff
+}
+
+.imga{
+height: 100vh;
+width: 100%;
+position: absolute;
+}
+
+.h1a{
+position: absolute;
+top: 20%;
+color: rgb(255,255,255);
+font-size: 50px;
+z-index: 3;
+}
+
+#section02{
+align-items: center;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+padding-top: 70%;
+gap: 40px;
+height: 100vh;
+width: 100vw;
+
+}
+
+
+
+#luo{
+height: 100%;
+width: 100%;
+position: absolute;
+z-index: -1;
+background-attachment: fixed;  
+}
+
+#nopc{
+overflow: hidden;
+height: 0px;
+}
+
+@media screen and (min-width : 1000px)
+{#nopc{
+position: fixed;
+height: 100vh;
+width: 100vw;
+background-color: #000000;
+z-index: 9999;
+
+#nopca1{
+font-size: 50px;
+color: rgb(255,255,255);
+text-align:center;
+}
+}  
+}
+
+.p01ai{
+background-color: rgba(255,255,255,0.5);
+display: flex;
+flex-direction: column;
+width: 90%;
+height: auto;
+margin: auto;
+padding:15px 10px 10px 10px;
+box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.15);
+border-radius: 10px;
+border: 1px solid rgba(255, 255, 255, 0.7);
+backdrop-filter: blur(15px);
+}
+
+#h1b{
+margin-top: 50px;
+color: rgba(255, 255, 255, 0.87)
+}
+
+
+  
+#div01b{
+height: 0px;
+width: 100%;
+background-image: url(tianyi.jpg);
+overflow: hidden;
+position: fixed;
+z-index: 999;
+background-size: cover;
+transition: all 0.4s;
+}
+
+#div01b.kai{
+height: 100vh;
+top: 0px;
+background-attachment: fixed;
+}
+
+.butta{
+color: #66ccff;
+flex-direction: column;
+justify-content: space-between;
+overflow: hidden;
+position: relative;
+height:45px;
+width: 150px;
+display: flex;
+transition:.5s;
+justify-content: center;
+align-items: center;
+-webkit-box-reflect: below 1px linear-gradient(transparent,#0005);
+}
+
+.butta::before{
+content: "";
+position: absolute;
+top: 0px;
+left: 0px;
+width: 20px;
+height: 20px;
+border-top: 2px solid #66ccff;
+border-left: 2px solid #66ccff;
+transition:.2s;
+}
+.butta::after{
+content: "";
+position: absolute;
+bottom: 0px;
+right: 0px;
+width: 20px;
+height: 20px;
+border-bottom: 2px solid #66ccff;
+border-right: 2px solid #66ccff;
+transition: .2s;
+}
+
+.butta:active::after,.butta:active::before{
+height: 100%;
+width: 100%;
+}
+
+.butta:active{
+background-color: #66ccff;
+color: #000000;
+box-shadow: 0 0 70px #66ccff
+}
+
+
+</style>
+</head>
+<body>
+
+<!--电脑out-->
+<div id="nopc">
+<p id="nopca1">
+使用手机或平板使用更佳
+</p>
+</div>
+
+<!--菜单-->
+<div id="cheidang">
+☰
+</div>
+
+
+<!--视差-->
+<section id="sect">
+<img class="imga" src="雪山test全.jpg">
+<h1 class="h1a">这是视差</h1>
+<img class="imga" style="z-index: 10;" src="雪山testbom3.png">
+
+</section>
+
+  
+<!--作者前言-->
+<div style="margin-bottom: 20px;">
+
+<h1 id="h1b">作者前言</h1>
+<p class="p01ai">
+
+这里是洛绫珑的个人主页，也是我做网页功能演示的主站，可以由此跳转到其他站点。网站于2026年10月30日上线，当时是第30个小版本，也就是0.30版，算是我对HTML、CSS和JavaScript的一次完整尝试。我原本只想学点新东西充实自己，没打算做得多认真，但真正动手之后才发现，改一个细节牵出的问题，往往比预想的多得多。现在回头看，还算值得。
+
+开始写这些之后，我打游戏的时间大幅下降，几乎全变成了加功能和修bug的时间。我也反复想过，一个没什么人看的小站，为什么值得一遍遍维护。大概是因为每次补上一个洞，心里就多一分踏实，这种踏实很难从别处得到。
+
+我不知道一个小网页怎么能被我修出那么多大大小小的问题，也说不上现在的水平比当初强了多少，只能一点点往前挪。这里既是个人主页，也是练习场和记录本。页面里的每个按钮、每段文字、每个跳转链接，都是自己一点点搭起来的，不算精致，偶尔漏风，但补好之后总归踏实一些，权当留个记录。
+
+也许这就是维护它的意义：不一定非要做出多厉害的东西，而是在一次次修改和尝试里，看着自己从完全不懂到好像懂了一点，再从好像懂了一点到又能多改一行。欢迎从这里去看看我写的其他网站，也许下次来，它又多了几个新功能，少了几个旧bug。反正慢慢来，总会有变化。
+</p>
+
+</div>
+
+<!--菜单内部-->
+<div id="div01b">
+
+
+<section id="section02">  
+<div class="butta">
+5858
+</div>
+
+<div class="butta">
+5856
+</div>
+
+<div class="butta">
+5855
+</div>
+
+</section>
+
+</div>
+
+
+
+
+
+<script>
+let h1a = document.getElementsByClassName("h1a")[0]
+let imga1 = document.getElementsByClassName("imga")[1]
+
+let butta01 = document.getElementsByClassName("butta")[0]
+let butta02 = document.getElementsByClassName("butta")[1]
+let butta03 = document.getElementsByClassName("butta")[2]
+
+
+
+
+const cheidang = document.getElementById("cheidang")
+const div01b = document.getElementById("div01b")
+
+let timea = null
+
+
+let jisa01a = 0
+
+//视差代码  
+window.addEventListener('scroll',() => {
+let val = window.scrollY;
+h1a.style.top =  val * 0.2 + 20 + "%" ;
+});
+
+//菜单展开
+cheidang.onclick = function () {
+div01b.classList.toggle("kai");
+cheidang.classList.toggle("kaicolo");
+cheidang.classList.toggle("cheidangcctv");
+}
+
+//按钮点击开始计时
+butta01.onpointerdown = function () {
+timea = setInterval(()=> {
+jisa01a++
+},100)
+};
+//按钮点击判定
+butta01.onpointerup = function () {
+if (jisa01a >= 4) {
+clearInterval(timea);
+alert("点击成功");
+jisa01a = 0
+} else {
+clearInterval(timea);
+jisa01a = 0
+};}
+
+
+
+
+
+
+</script>
+</body>
+</html>
