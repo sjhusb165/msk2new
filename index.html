@@ -149,7 +149,7 @@ color: rgba(255, 255, 255, 0.87)
 #div01b{
 height: 0px;
 width: 100%;
-background-image: url(Picture/tianyi.jpg);
+background-image: url(tianyi.jpg);
 overflow: hidden;
 position: fixed;
 z-index: 999;
@@ -164,7 +164,8 @@ background-attachment: fixed;
 }
 
 .butta{
-color: #66ccff;color-direction: column;
+color: #66ccff;
+flex-direction: column;
 justify-content: space-between;
 overflow: hidden;
 position: relative;
@@ -231,9 +232,9 @@ box-shadow: 0 0 70px #66ccff
 
 <!--视差-->
 <section id="sect">
-<img class="imga" src="Picture/雪山test全.jpg">
+<img class="imga" src="雪山test全.jpg">
 <h1 class="h1a">Parallax<br>Scrolling</h1>
-<img class="imga" style="z-index: 10;" src="Picture/雪山testbom3.png">
+<img class="imga" style="z-index: 10;" src="雪山testbom3.png">
 
 </section>
 
@@ -269,7 +270,7 @@ box-shadow: 0 0 70px #66ccff
 </div>
 
 <div class="butta">
-5855
+你在哪？
 </div>
 
 </section>
@@ -295,9 +296,11 @@ const cheidang = document.getElementById("cheidang")
 const div01b = document.getElementById("div01b")
 
 let timea = null
+let timeb = null
 
 
 let jisa01a = 0
+let jisa01b = 0
 
 //视差代码  
 window.addEventListener('scroll',() => {
@@ -323,13 +326,29 @@ butta01.onpointerup = function () {
 if (jisa01a >= 4) {
 clearInterval(timea);
 alert("点击成功");
-jisa01a = 0
+jisa01a = 0;
 } else {
 clearInterval(timea);
-jisa01a = 0
+jisa01a = 0;
 };}
 
 
+//按钮3
+butta03.onpointerdown = function () {
+timeb = setInterval(()=> {
+jisa01b++
+},100)
+};
+//按钮点击判定
+butta03.onpointerup = function () {
+if (jisa01b >= 4) {
+clearInterval(timeb);
+jisa01b = 0;
+window.location.href="/sun.htnl";
+} else {
+clearInterval(timeb);
+jisa01b = 0;
+};}
 
 
 
