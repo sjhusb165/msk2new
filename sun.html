@@ -145,7 +145,6 @@ let out = document.getElementById("jidou")
 let dume = document.getElementById("dume")
 let fanoc = document.getElementById("fanoc")
 let tian7 = document.getElementById("tian7")
-let formtxt = suru.value.trim()
 let xioziqi = document.getElementsByClassName("xioziqi")[0]
 let xioziqi2 = document.getElementsByClassName("xioziqi")[1]
 let ppsme =document.getElementsByClassName("ppsme")[0]
@@ -170,9 +169,11 @@ const tianqiDaima = {
 
 
 function culi01() {
+
 let culitext = suru.value.trim();
 out.innerText = "正在查询中……";
 
+let formtxt = suru.value.trim();
 if (formtxt === "") {
 out.innerText = "请输入城市名称"; 
 return
