@@ -152,7 +152,7 @@ fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + culitext + '&coun
 .then((r)=> r.json())
 .then((it) => {
 if (!it.results) {
-  out.innerText = "无地区"
+  out.innerText = "未查询到地区，请输入国家名称或省市、市名称"
 } else {
 dume.innerText = it.results[0].name;
 ji = it.results[0].latitude;
@@ -172,7 +172,11 @@ out.innerText = "";
 });}
 
 butt.onclick = function () {
-culi01()
+culi01();
+xioziqi.innerText = "";
+xioziqi2.innerText = "";
+dume.innerText = "";
+fanoc.innerText = "";
 }
 
 ppsme.onclick = function () {
