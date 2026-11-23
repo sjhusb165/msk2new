@@ -75,12 +75,20 @@ color:rgba(0, 0, 0, 0.5);
 margin: 0px;
 }
 
-#tian7{
+.tian7{
 white-space: pre-wrap;
 font-size: 15px;
 color:rgba(0, 0, 0, 0.5);
 }
-  
+
+#tiantxtal{
+display: flex;
+gap: 15px;
+position: relative;
+left: 13px;
+}
+
+
 #linka1{
 margin: 0px; 
 font-size: 10px;
@@ -119,8 +127,13 @@ text-decoration: none;
 <h1 id="fanoc"></h1>
 <p class="xioziqi"></p>
 <p class="xioziqi"></p>
-<p id="tian7"></p>
 
+<div id="tiantxtal">  
+<p class="tian7"></p>
+<p class="tian7"></p>
+<p class="tian7"></p>
+<p class="tian7"></p>
+</div>
 
 </div>
 
@@ -144,7 +157,10 @@ let butt = document.getElementById("caxing")
 let out = document.getElementById("jidou")
 let dume = document.getElementById("dume")
 let fanoc = document.getElementById("fanoc")
-let tian7 = document.getElementById("tian7")
+let tian7 = document.getElementsByClassName("tian7")[0]
+let tian7b = document.getElementsByClassName("tian7")[1]
+let tian7c = document.getElementsByClassName("tian7")[2]
+let tian7d = document.getElementsByClassName("tian7")[3]
 let xioziqi = document.getElementsByClassName("xioziqi")[0]
 let xioziqi2 = document.getElementsByClassName("xioziqi")[1]
 let ppsme =document.getElementsByClassName("ppsme")[0]
@@ -204,13 +220,22 @@ let tian7mamax = tianqi.daily.temperature_2m_max;
 let tian7matian = tianqi.daily.weather_code;
 
 let fghj = "";
+let fghjb = "";
+let fghjc = "";
+let fghjd = "";
 
 for (let i = 1 ; i < gjgp ; i++) {
 let res = tian7ma.time[i].split("-");
 let tq = tianqiDaima[tian7matian[i]] || "未知";
-fghj = fghj+Number(res[1])+"/"+Number(res[2])+'      ↓'+Math.round(tian7mamin[i])+'º  ↑'+Math.round(tian7mamax[i])+ "º   " + tq +"\n"
+fghj = fghj+Number(res[1])+"/"+Number(res[2])+"\n";
+fghjb = fghjb+'↓'+Math.round(tian7mamin[i])+'º'+'\n';
+fghjc = fghjc+'↑'+Math.round(tian7mamax[i])+ "º"+"\n";
+fghjd = fghjd+tq+"\n";
 }
 tian7.innerText = fghj;
+tian7b.innerText = fghjb;
+tian7c.innerText = fghjc;
+tian7d.innerText = fghjd;
    
 out.innerText = "";
 })
