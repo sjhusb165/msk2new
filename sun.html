@@ -146,26 +146,35 @@ let ji = null
 let wu = null
 let tian7ma = null
 
-
 const tianqiDaima = {
 0: "晴", 1: "大部晴朗", 2: "多云", 3: "阴",
 45: "有雾", 48: "雾凇",
-61: "小雨", 63: "中雨", 65: "大雨"}
+51: "小毛毛雨", 53: "中毛毛雨", 55: "大毛毛雨",
+56: "小冻毛毛雨", 57: "大冻毛毛雨",
+61: "小雨", 63: "中雨", 65: "大雨",
+66: "小冻雨", 67: "大冻雨",
+71: "小雪", 73: "中雪", 75: "大雪",
+77: "米雪",
+80: "小阵雨", 81: "中阵雨", 82: "大阵雨",
+85: "小阵雪", 86: "大阵雪",
+95: "雷暴", 96: "雷暴小冰雹", 99: "雷暴大冰雹"
+}
+
 
 function culi01() {
 let culitext = suru.value.trim();
-out.innerText = "查询中……";
+out.innerText = "正在查询中……";
 
 fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + culitext + '&count=1&language=zh&format=json')
 .then((r)=> r.json())
 .then((it) => {
 if (!it.results) {
-  out.innerText = "未查询到地区，请输入国家名称或省市、市名称"
+  out.innerText = "未查询到地区，请输入国家名称或省市、市名称，如“广州”"
 } else {
 dume.innerText = it.results[0].name;
 ji = it.results[0].latitude;
 wu = it.results[0].longitude;
-fetch('https://api.open-meteo.com/v1/forecast?latitude=' + ji + '&longitude=' + wu + '&current=temperature_2m,relative_humidity_2m,weather_code&daily=temperature_2m_max,temperature_2m_min&timezone=auto')
+fetch('https://api.open-meteo.com/v1/forecast?latitude=' + ji + '&longitude=' + wu + '&current=temperature_2m,relative_humidity_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto')
 .then((r) => r.json())
 .then((tianqi) => {
 let d = tianqi.current;
@@ -176,14 +185,16 @@ xioziqi2.innerText = "今日最低温度:"+Math.round(tianqi.daily.temperature_2
 
 let tian7ma = tianqi.daily;
 let gjgp = tian7ma.time.length;
+let tian7mamin = tianqi.daily.temperature_2m_min;
+let tian7mamax = tianqi.daily.temperature_2m_max;
+let tian7matian = tianqi.daily.weather_code;
 
 let fghj = "";
 
 for (let i = 1 ; i < gjgp ; i++) {
-let tian7mamin = tianqi.daily.temperature_2m_min;
-let tian7mamax = tianqi.daily.temperature_2m_max;
 let res = tian7ma.time[i].split("-");
-fghj = fghj+Number(res[1])+"/"+Number(res[2])+'      ↓'+Math.round(tian7mamin[i])+'º  ↑'+Math.round(tian7mamax[i])+"º\n"
+let tq = tianqiDaima[tian7matian[i]] || "未知";
+fghj = fghj+Number(res[1])+"/"+Number(res[2])+'      ↓'+Math.round(tian7mamin[i])+'º  ↑'+Math.round(tian7mamax[i])+ "º   " + tq +"\n"
 }
 tian7.innerText = fghj;
    
@@ -204,8 +215,6 @@ fanoc.innerText = "";
 ppsme.onclick = function () {
 window.location.href="/" 
 }
-
-
 
 </script>
   
