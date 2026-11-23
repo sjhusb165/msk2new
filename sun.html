@@ -81,6 +81,13 @@ font-size: 15px;
 color:rgba(0, 0, 0, 0.5);
 }
   
+#linka1{
+margin: 0px; 
+font-size: 10px;
+color: #000000;
+text-decoration: none;
+}
+
 
 </style>
 </head>
@@ -96,7 +103,7 @@ color:rgba(0, 0, 0, 0.5);
 
 <div>
 <span style="margin-top: 0px;font-size: 20px">天气查询</span>
-<span style="margin: 0px; font-size: 10px;">由"Open-Meteo"API获取天气</span>
+<a id="linka1" href="https://open-meteo.com/">由"Open-Meteo"API获取天气</a>
 </div>
 
 <div id="formew">
@@ -138,6 +145,7 @@ let out = document.getElementById("jidou")
 let dume = document.getElementById("dume")
 let fanoc = document.getElementById("fanoc")
 let tian7 = document.getElementById("tian7")
+let formtxt = suru.value.trim()
 let xioziqi = document.getElementsByClassName("xioziqi")[0]
 let xioziqi2 = document.getElementsByClassName("xioziqi")[1]
 let ppsme =document.getElementsByClassName("ppsme")[0]
@@ -164,6 +172,11 @@ const tianqiDaima = {
 function culi01() {
 let culitext = suru.value.trim();
 out.innerText = "正在查询中……";
+
+if (formtxt === "") {
+out.innerText = "请输入城市名称"; 
+return
+};
 
 fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + culitext + '&count=1&language=zh&format=json')
 .then((r)=> r.json())
@@ -210,6 +223,7 @@ xioziqi.innerText = "";
 xioziqi2.innerText = "";
 dume.innerText = "";
 fanoc.innerText = "";
+tian7.innerText = "";
 }
 
 ppsme.onclick = function () {
