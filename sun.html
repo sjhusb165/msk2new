@@ -75,6 +75,12 @@ color:rgba(0, 0, 0, 0.5);
 margin: 0px;
 }
 
+#tian7{
+white-space: pre-wrap;
+font-size: 15px;
+color:rgba(0, 0, 0, 0.5);
+}
+  
 
 </style>
 </head>
@@ -106,7 +112,7 @@ margin: 0px;
 <h1 id="fanoc"></h1>
 <p class="xioziqi"></p>
 <p class="xioziqi"></p>
-
+<p id="tian7"></p>
 
 
 </div>
@@ -131,12 +137,14 @@ let butt = document.getElementById("caxing")
 let out = document.getElementById("jidou")
 let dume = document.getElementById("dume")
 let fanoc = document.getElementById("fanoc")
+let tian7 = document.getElementById("tian7")
 let xioziqi = document.getElementsByClassName("xioziqi")[0]
 let xioziqi2 = document.getElementsByClassName("xioziqi")[1]
 let ppsme =document.getElementsByClassName("ppsme")[0]
   
 let ji = null
 let wu = null
+let tian7ma = null
 
 
 const tianqiDaima = {
@@ -164,7 +172,21 @@ let d = tianqi.current;
 let ma = tianqiDaima[d.weather_code] || "未知天气";
 fanoc.innerText = Math.round(tianqi.current.temperature_2m) + "°";
 xioziqi.innerText = ma + "　湿度 " + d.relative_humidity_2m + "%";
-xioziqi2.innerText = "今日最低温度:"+Math.round(tianqi.daily.temperature_2m_min[0])+"º  今日最高温度:"+Math.round(tianqi.daily.temperature_2m_max[0])+"º";
+xioziqi2.innerText = "今日最低温度:"+Math.round(tianqi.daily.temperature_2m_min[0])+"º 今日最高温度:"+Math.round(tianqi.daily.temperature_2m_max[0])+"º";
+
+let tian7ma = tianqi.daily;
+let gjgp = tian7ma.time.length;
+
+let fghj = "";
+
+for (let i = 1 ; i < gjgp ; i++) {
+let tian7mamin = tianqi.daily.temperature_2m_min;
+let tian7mamax = tianqi.daily.temperature_2m_max;
+let res = tian7ma.time[i].split("-");
+fghj = fghj+Number(res[1])+"/"+Number(res[2])+'      ↓'+Math.round(tian7mamin[i])+'º  ↑'+Math.round(tian7mamax[i])+"º\n"
+}
+tian7.innerText = fghj;
+   
 out.innerText = "";
 })
 .catch(e => out.innerText = "请求失败，请检查您的网络")
@@ -186,7 +208,6 @@ window.location.href="/"
 
 
 </script>
-
   
 </body>
 </html>
