@@ -197,7 +197,12 @@ out.innerText = "正在查询中" + txtdian;
 },500)
 }
 
-
+suru.onkeydown = function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault(); 
+    butt.click();     
+  }
+}
 
 
 function culi01() {
