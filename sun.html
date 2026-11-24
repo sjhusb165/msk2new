@@ -168,6 +168,8 @@ let ppsme =document.getElementsByClassName("ppsme")[0]
 let ji = null
 let wu = null
 let tian7ma = null
+let jisi = null
+let txtdian = "."
 
 const tianqiDaima = {
 0: "晴", 1: "大部晴朗", 2: "多云", 3: "阴",
@@ -183,15 +185,29 @@ const tianqiDaima = {
 95: "雷暴", 96: "雷暴小冰雹", 99: "雷暴大冰雹"
 }
 
+function jisetxt() {
+jisi = setInterval(function () {
+if (txtdian >= "....") {
+txtdian = "."
+} else {
+txtdian = txtdian + ".";
+}
+out.innerText = "正在查询中" + txtdian;
+
+},500)
+}
+
+
+
 
 function culi01() {
-
-let culitext = suru.value.trim();
-out.innerText = "正在查询中……";
+jisetxt();
+let culitext = suru.value.trim()
 
 let formtxt = suru.value.trim();
 if (formtxt === "") {
 out.innerText = "请输入城市名称"; 
+clearInterval(jisi);
 return
 };
 
@@ -199,7 +215,8 @@ fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + culitext + '&coun
 .then((r)=> r.json())
 .then((it) => {
 if (!it.results) {
-  out.innerText = "未查询到地区，请输入国家名称或省市、市名称，如“广州”"
+out.innerText = "未查询到地区，请输入国家名称或省市、市名称，如“广州”";
+clearInterval(jisi);
 } else {
 dume.innerText = it.results[0].name;
 ji = it.results[0].latitude;
@@ -236,7 +253,7 @@ tian7.innerText = fghj;
 tian7b.innerText = fghjb;
 tian7c.innerText = fghjc;
 tian7d.innerText = fghjd;
-   
+clearInterval(jisi);   
 out.innerText = "";
 })
 .catch(e => out.innerText = "请求失败，请检查您的网络")
@@ -244,6 +261,7 @@ out.innerText = "";
 });}
 
 butt.onclick = function () {
+txtdian = ".";
 culi01();
 xioziqi.innerText = "";
 xioziqi2.innerText = "";
